@@ -12,7 +12,7 @@ import {
 import { RiContactsLine } from 'react-icons/ri';
 import { AiFillDelete } from 'react-icons/ai';
 
-const ContactList = ({ contacts, onDeleteContact }) => {
+function ContactList({ contacts, onDeleteContact }) {
   return (
     <ContactListWrapper>
       {contacts.map(contact => (
@@ -31,7 +31,7 @@ const ContactList = ({ contacts, onDeleteContact }) => {
       ))}
     </ContactListWrapper>
   );
-};
+}
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
