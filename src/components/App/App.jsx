@@ -4,21 +4,18 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
 
-function App() {
-  const [contacts, setContacts] = useState([
-    { id: 'id-1', name: 'Rosie Simpson', phone: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', phone: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', phone: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', phone: '227-91-26' },
-  ]);
-  const [filter, setFilter] = useState('');
+const initialState = [
+  { id: 'id-1', name: 'Rosie Simpson', phone: '459-12-56' },
+  { id: 'id-2', name: 'Hermione Kline', phone: '443-89-12' },
+  { id: 'id-3', name: 'Eden Clements', phone: '645-17-79' },
+  { id: 'id-4', name: 'Annie Copeland', phone: '227-91-26' },
+];
 
-  useEffect(() => {
-    const contactLS = JSON.parse(localStorage.getItem('contacts')) || [];
-    if (contactLS.length > 0) {
-      setContacts(contactLS);
-    }
-  }, []);
+function App() {
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) ?? initialState
+  );
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
